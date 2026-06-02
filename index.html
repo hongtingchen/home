@@ -1563,7 +1563,7 @@
         </div>
         <div class="contact-item reveal stagger-4 interactive">
             <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="#E20074" d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"></path></svg>
-            <span>hongchen2107@gmail.com</span>
+            <a href="mailto:hongchen2107@gmail.com" style="text-decoration: none; color: inherit;"><span>hongchen2107@gmail.com</span></a>
         </div>
     </div>
 </section>
@@ -1784,8 +1784,8 @@
                 const chartHeight = rect.height;
                 
                 // Start animating when chart enters viewport, stop at 25% below center
-                const animationStartPoint = viewportHeight; // Chart top reaches bottom of viewport
-                const animationEndPoint = viewportHeight - (chartHeight / 2) - (chartHeight * 0.25); // 25% below center
+                const animationStartPoint = viewportHeight + (chartHeight * 0.25) - (chartHeight / 2); // 25% above center
+                const animationEndPoint = viewportHeight - (chartHeight / 2) - (chartHeight * 0.90); // 90% below center
                 
                 let scrollProgress = 0;
                 if (chartTop <= animationStartPoint && chartTop > animationEndPoint) {
