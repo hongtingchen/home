@@ -90,6 +90,35 @@
             transition: width 0.05s linear;
         }
 
+        /* ── LANDING VIDEO ──────────────────────────── */
+        .landing-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: auto;
+            min-height: 100vh;
+            object-fit: cover;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* Ensure content is above video */
+        nav {
+            position: relative;
+            z-index: 100;
+        }
+
+        .hero {
+            position: relative;
+            z-index: 100;
+        }
+
+        .marquee-wrap {
+            position: relative;
+            z-index: 100;
+        }
+
         /* ── NAV ─────────────────────────────────────── */
         nav {
             position: fixed;
@@ -1240,6 +1269,11 @@
 <!-- Scroll Progress -->
 <div class="scroll-progress"></div>
 
+<!-- Background Video -->
+<video class="landing-video" autoplay muted playsinline>
+    <source src="landingtop.mp4" type="video/mp4">
+</video>
+
 <!-- Nav -->
 <nav>
     <div class="nav-name">Hong<span>.</span>Ting</div>
@@ -1757,6 +1791,24 @@
     }
 
     // ─── INITIALIZE ON DOM READY ─────────────────────────────────
+    // ─── LANDING VIDEO CONTROL ─────────────────────────────────
+    const landingVideo = document.querySelector('.landing-video');
+    if (landingVideo) {
+        // Stop video after 3 seconds
+        const videoTimeout = setTimeout(() => {
+            landingVideo.pause();
+            landingVideo.style.opacity = '0';
+            landingVideo.style.transition = 'opacity 0.8s ease-out';
+        }, 3000);
+
+        // Handle video end
+        landingVideo.addEventListener('ended', () => {
+            landingVideo.style.opacity = '0';
+            landingVideo.style.transition = 'opacity 0.8s ease-out';
+            clearTimeout(videoTimeout);
+        });
+    }
+
     document.addEventListener('DOMContentLoaded', () => {
         // Initialize text scrambler
         const heroNameElement = document.getElementById('hero-name-scrambler');
